@@ -1,8 +1,13 @@
 #include "HelloWorldScene.h"
 
-#include "Manager/QFLManager.hpp"
 
+#include "Manager/QFLManager.hpp"
+#include "GameClass/QFLCtrl.hpp"
+
+//测试层
 #include "TestClass/TestNotification.hpp"
+
+#include <iostream>
 
 USING_NS_CC;
 
@@ -58,6 +63,13 @@ void HelloWorld::addUI()
     //TestNotification
     this->addMenuItem("TestNotification", [=](){
         this->addChild(TestNotification::create());
+    });
+    
+    //TestMVC
+    this->addMenuItem("TestMVC", [=](){
+        QFLCtrl::getInstance()->initWorld();
+        
+        Director::getInstance()->getScheduler()->scheduleUpdate(QFLCtrl::getInstance(), 1, false);
     });
 }
 
